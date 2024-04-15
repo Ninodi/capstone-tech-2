@@ -31,13 +31,13 @@ function Footer() {
                 </div>
             </div>
             <div className="footer-right">
-                <a href="" className="soc-img">
+                <a href="/#" className="soc-img">
                     <img src={FB} alt="" />
                 </a>
-                <a href="" className="soc-img">
+                <a href="/#" className="soc-img">
                     <img src={IG} alt="" />
                 </a>
-                <a href="" className="soc-img">
+                <a href="/#" className="soc-img">
                     <img src={Whatsapp} alt="" />
                 </a>
             </div>
