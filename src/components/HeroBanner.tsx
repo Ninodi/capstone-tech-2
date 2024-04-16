@@ -8,7 +8,7 @@ function HeroBanner() {
             <img src={HeroBannerImg} alt="" />
         </div>
         <div className="hero-text">
-            <h1>წიწაკოს ბიო მეურნეობა</h1>
+            <p>წიწაკოს ბიო მეურნეობა</p>
             <p>ჩვენ გთავაზობთ ულამაზეს ქოთნის ბოსტნეულს თქვენი აივნების გასაფერადებლად!</p>
         </div>
     </div>
