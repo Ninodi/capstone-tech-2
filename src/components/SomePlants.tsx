@@ -4,14 +4,14 @@ import { NavLink } from 'react-router-dom'
 import Arrow from '../assets/icons/arrow.png'
 
 function SomePlants() {
-    const somePlants = new Array(8).fill(null)
+    const somePlants = new Array(8).fill(null).map((each, index) => index+1)
   return (
     <div className='some-plants-container'>
         <div className="content-container">
             <h2>ჩვენი მცენარეები</h2>
             <div className="some-plants">
                 {somePlants.map((each, index) => (
-                    <ProductBox key={index} />
+                    <ProductBox key={index} link='racxa' content={each}/>
                 ))}
             </div>
             <div className="see-more">
