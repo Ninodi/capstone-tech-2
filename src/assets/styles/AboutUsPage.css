@@ -101,7 +101,7 @@ h2 {
 @media screen and (min-width: 769px) {
   .about-txt {
     position: absolute;
-    width: 60%;
+    width: 80%;
     font-size: 20px;
     line-height: 32px;
     font-weight: 700;
@@ -119,5 +119,10 @@ h2 {
     top: 0;
     left: 0;
     z-index: -1;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .about-txt {
+    width: 60%;
   }
 }/*# sourceMappingURL=AboutUsPage.css.map */

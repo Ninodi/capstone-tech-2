@@ -178,16 +178,16 @@ h2 {
   font-size: 12px;
 }
 
-form {
+#contact-form {
   margin-top: 25px;
   margin-bottom: 70px;
 }
 @media screen and (min-width: 1025px) {
-  form {
+  #contact-form {
     margin-bottom: 100px;
   }
 }
-form button {
+#contact-form button {
   display: flex;
   margin: 0 auto;
   background-color: #D1D1D1;
@@ -203,11 +203,11 @@ form button {
   gap: 16px;
 }
 @media screen and (min-width: 1025px) {
-  form button {
+  #contact-form button {
     margin: 0;
   }
 }
-form button.active {
+#contact-form button.active {
   background-color: #8BC34A;
   pointer-events: unset;
   cursor: pointer;

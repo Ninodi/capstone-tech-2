@@ -1,6 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-import Geo from '../assets/img/geo.png'
-import En from '../assets/img/en.png'
 import Logo from '../assets/img/logo.png'
 import SearchIcon from '../assets/icons/search.png'
 import { NavLink } from 'react-router-dom'
@@ -20,10 +18,21 @@ function Header() {
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    if (window.innerWidth > 769) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 769) {
+        document.addEventListener('mousedown', handleClickOutside)
+      } else {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    })
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
+      window.removeEventListener('resize', () => {})
     }
   }, [])
 
@@ -35,10 +44,12 @@ function Header() {
         <div className='burger-menu' onClick={() => setToggleNav(prev => !prev)}>
           <img src={BurgerMenu} alt="" />
         </div>
-        <LanguageDropdown />
-        <div className="logo">
-          <img src={Logo} alt="" />
+        <div className="language-icons-deskt">
+          <LanguageDropdown />
         </div>
+        <NavLink to={'/'} className="logo">
+          <img src={Logo} alt="" />
+        </NavLink>
         <div className="search-field">
           <img src={SearchIcon} alt="" />
         </div>
@@ -70,9 +81,7 @@ function Header() {
             <NavLink to={'/contact'}>კონტაქტი</NavLink>
           </li>
           <div className="language-icons-mob">
-            <div className="language-icons">
-              <img src={Geo} alt="" />
-            </div>
+            <LanguageDropdown />
           </div>
         </ul>
       </nav>

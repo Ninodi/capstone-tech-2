@@ -93,7 +93,7 @@ const ContactForm = () => {
         setIsFormValid(false)
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form id='contact-form' onSubmit={handleSubmit}>
             <div className="result-message"></div>
             <div className="input-container">
                 <div className="input-field-container comment-container">

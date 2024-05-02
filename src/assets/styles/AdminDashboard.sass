@@ -1,0 +1,49 @@
+@import helpers
+
+.user-icon
+    width: 50px
+    height: 50px
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+.lower-decoration
+    width: 100%
+    height: 56px
+    background-color: $secondary-color
+
+.admin-content
+    @include horizontal(start)
+    align-items: flex-start
+#admin-sidebar
+    height: calc( 100vh - 300px )
+    width: 290px
+    @include verticalCenter(flex-start)
+    justify-content: space-between
+    background-color: $ultra-light-green
+    padding: 16px
+    border-top-right-radius: 10px
+    border-bottom-right-radius: 10px
+
+.admin-page-link
+    width: 100%
+    @include verticalCenter(start)
+    gap: 5px
+    a
+        @include horizontal(start)
+        width: 100%
+        gap: 10px
+        height: 40px
+        color: #484848
+        border-radius: 4px
+        transition: all 0.1s ease-in
+        &:hover
+            background-color: #699F38
+            padding-left: 10px
+
+.admin-items-container
+    width: 100%
+    padding-left: 24px
+    padding-top: 30px
+    padding-right: 100px

@@ -22,9 +22,9 @@ function LanguageDropdown() {
 
     useEffect(() => {
         i18n.changeLanguage(selectedLanguage)
-    }, [i18n, selectedLanguage])
+    }, [selectedLanguage])
     return (
-        <div className={`language-icons-deskt ${toggleDropdown ? 'active' : ''}`}>
+        <div className={`language-change-container ${toggleDropdown ? 'active' : ''}`}>
             <div className={`selected-lang ${toggleDropdown ? 'active' : ''}`} onClick={handleLanguageToggle}>
                 <div className="language-icons">
                     <img src={selectedLanguage === 'en' ? En : Geo} alt="" />
