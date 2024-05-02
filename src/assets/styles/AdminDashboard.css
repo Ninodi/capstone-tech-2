@@ -118,4 +118,36 @@ h2 {
   padding-left: 24px;
   padding-top: 30px;
   padding-right: 100px;
+}
+
+.login-back {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 146px);
+  background-image: url("../img/hero-banner.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#admin-login-form {
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#admin-login-form input {
+  height: 52px;
+  width: 358px;
+  padding-left: 10px;
+}
+#admin-login-form button {
+  width: 200px;
+  height: 40px;
 }/*# sourceMappingURL=AdminDashboard.css.map */

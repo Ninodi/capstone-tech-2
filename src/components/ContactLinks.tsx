@@ -36,7 +36,7 @@ function ContactLinks() {
         <div className='soc-links-text'>
             <a href="tel:+995577093525">+995 577 09 35 25</a>
             <a href="mailto: ttsitsako@gmail.com">ttsitsako@gmail.com</a>
-            <p>ანტონ წოფურაშვილის ქ. 1, ნორიო</p>
+            <p>ანტონ ცოფურაშვილის ქ. 1, ნორიო</p>
             <div className='contact-links'>
                 <p>სოციალური ქსელები:</p>
                 <div className="footer-right">

@@ -10,32 +10,21 @@ function Header() {
   const [toggleDropdown, setToggleDropdown] = useState<boolean>(false)
   const [toggleNav, setToggleNav] = useState<boolean>(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLDivElement>(null); // Reference for the navigation menu
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (!dropdownRef.current?.contains(event.target as Node) &&!navRef.current?.contains(event.target as Node)) {
         setToggleDropdown(false)
+        setToggleNav(false)
       }
     }
-
-    if (window.innerWidth > 769) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 769) {
-        document.addEventListener('mousedown', handleClickOutside)
-      } else {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    })
+    document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
-      window.removeEventListener('resize', () => {})
     }
   }, [])
-
 
 
   return (
@@ -54,7 +43,7 @@ function Header() {
           <img src={SearchIcon} alt="" />
         </div>
       </div>
-      <nav className={`"burger-menu" ${toggleNav ? 'open' : ''}`}>
+      <nav className={`"burger-menu" ${toggleNav ? 'open' : ''}`} ref={navRef}>
         <ul className='content-container'>
           <li>
             <NavLink to={'/'}>მთავარი</NavLink>

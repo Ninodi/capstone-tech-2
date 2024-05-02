@@ -47,3 +47,26 @@
     padding-left: 24px
     padding-top: 30px
     padding-right: 100px
+
+.login-back
+    @include horizontal()
+    width: 100%
+    height: calc( 100vh - 146px )
+    background-image: url('../img/hero-banner.png')
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+
+#admin-login-form
+    width: 500px
+    height: auto
+    @include verticalCenter()
+    gap: 10px
+    input
+        height: 52px
+        width: 358px
+        padding-left: 10px
+    button
+        width: 200px
+        height: 40px
+    

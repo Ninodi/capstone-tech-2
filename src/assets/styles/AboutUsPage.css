@@ -49,17 +49,29 @@ h2 {
   }
 }
 
-.about-content {
-  width: 100%;
-  position: relative;
+.about-page-container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.about-content {
+  width: 100%;
+}
 @media screen and (min-width: 769px) {
   .about-content {
-    height: calc(100vh - 529px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/aboutus.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 20px 0;
+    flex-grow: 1;
   }
 }
 
@@ -78,16 +90,8 @@ h2 {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.about-img img:first-child {
-  display: none;
-}
 @media screen and (min-width: 769px) {
-  .about-img img:first-child {
-    display: block;
-  }
-}
-@media screen and (min-width: 769px) {
-  .about-img img:nth-child(2) {
+  .about-img img {
     display: none;
   }
 }
@@ -100,9 +104,9 @@ h2 {
 }
 @media screen and (min-width: 769px) {
   .about-txt {
-    position: absolute;
+    position: relative;
     width: 80%;
-    font-size: 20px;
+    font-size: 1em;
     line-height: 32px;
     font-weight: 700;
     padding: 40px;

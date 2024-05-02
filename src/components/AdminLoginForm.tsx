@@ -8,7 +8,7 @@ function AdminLoginForm() {
     const [password, setPassword] = useState<string>('')
     const navigate = useNavigate()
 
-    const handleLogin = (e: React.FormEvent<HTMLDivElement>) => {
+    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (username.trim() !== '' && password.trim() !== '') {
             setIsAuthenticated(true)
@@ -20,25 +20,21 @@ function AdminLoginForm() {
     }
 
   return (
-    <div className='content-container'>
-        <div className="admin-login-form" onSubmit={(e) => handleLogin(e)}>
-            <form id='admin-login-form'>
-                <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type='submit'>Login</button>
-            </form>
-        </div>
-    </div>
+    <form action="" id="admin-login-form" onSubmit={(e) => handleLogin(e)}>
+        <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type='submit'>Login</button>
+    </form>
   )
 }
 
