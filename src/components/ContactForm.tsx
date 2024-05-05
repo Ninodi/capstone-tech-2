@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react' 
 import Arrow from '../assets/icons/arrow.png' 
+import { db } from '../config/firebase'
+import { collection, doc, setDoc } from "firebase/firestore";
 
 interface FormErrors {
     comment: string | null
@@ -70,27 +72,45 @@ const ContactForm = () => {
         }
     }, [email]) 
     
+
     useEffect(() => {
         if((commRef.current && commRef.current.value === "") || (phoneRef.current && phoneRef.current.value === "") || (emailRef.current && emailRef.current.value === "") ){
             setIsFormValid(false)
         }
     }, [])
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const leadRef = doc(collection(db, "leads"))
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(comment, phone, email)
+        const currentDate = new Date();
+        const year = currentDate.getFullYear().toString().slice(2)
+        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
+        const day = currentDate.getDate().toString().padStart(2, '0')
+        
+        const formattedDate = `${year}/${month}/${day}`
+        try {
+            await setDoc(leadRef, {
+                comment,
+                email,
+                phone,
+                date: formattedDate
+            })
 
-        setComment('')
-        setEmail('')
-        setPhone('')
-
-        setErrors({
-            comment: null,
-            phone: null,
-            email: null
-        })
-
-        setIsFormValid(false)
+            setComment('')
+            setEmail('')
+            setPhone('')
+    
+            setErrors({
+                comment: null,
+                phone: null,
+                email: null
+            })
+    
+            setIsFormValid(false)
+        } catch (error) {
+            console.error(error)
+        }
     }
     return (
         <form id='contact-form' onSubmit={handleSubmit}>

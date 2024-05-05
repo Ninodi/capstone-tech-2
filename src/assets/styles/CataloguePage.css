@@ -49,6 +49,14 @@ h2 {
   }
 }
 
+.full-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .products-container {
   width: 100%;
   display: grid;

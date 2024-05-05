@@ -5,12 +5,20 @@ import { NavLink } from 'react-router-dom'
 import Arrow from '../assets/icons/arrow.png'
 import BurgerMenu from '../assets/icons/burgerMenu.png'
 import LanguageDropdown from './LanguageDropdown'
+import { useTranslation } from 'react-i18next'
+import useFetch from '../hooks/useFetch'
+import { IProduct } from '../interfaces'
+
 
 function Header() {
   const [toggleDropdown, setToggleDropdown] = useState<boolean>(false)
   const [toggleNav, setToggleNav] = useState<boolean>(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const navRef = useRef<HTMLDivElement>(null); // Reference for the navigation menu
+  const navRef = useRef<HTMLDivElement>(null)
+  const {t, i18n} = useTranslation()
+  const {getData, data} = useFetch()
+  const [categories, setCategories] = useState<{ enCategory: string; geoCategory: string; }[]>([])
+
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
@@ -26,6 +34,21 @@ function Header() {
     }
   }, [])
 
+  useEffect(() => {
+    getData({endpoint: 'bestSellers'})
+  }, [])
+
+  useEffect(() => {
+    const categoriesList = data as IProduct[]
+    const mappedCategories = categoriesList?.map((category: IProduct) => ({
+      enCategory: category.enCategory,
+      geoCategory: category.geoCategory
+    }))
+
+    setCategories(mappedCategories)
+  }, [data])
+
+  const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
 
   return (
     <header>
@@ -46,28 +69,30 @@ function Header() {
       <nav className={`"burger-menu" ${toggleNav ? 'open' : ''}`} ref={navRef}>
         <ul className='content-container'>
           <li>
-            <NavLink to={'/'}>მთავარი</NavLink>
+            <NavLink to={'/'}>{t("global.header.home")}</NavLink>
           </li>
           <li>
             <div className="catalogue-container" ref={dropdownRef}>
               <div className={`catalogue-btn ${toggleDropdown ? 'active' : ''}`} onClick={() => setToggleDropdown(prev => !prev)}>
-                <p>კატალოგი</p>
+                <p>{t("global.header.catalogue")}</p>
                 <div className="catalogue-arrow">
                   <img src={Arrow} alt="" />
                 </div>
               </div>
               <div className={`catalogue-dropdown ${toggleDropdown ? 'active' : ''}`}>
-                <NavLink to={'/catalogue/wiwaka'}>წიწაკა</NavLink>
-                <NavLink to={'/catalogue/juja-pomidori'}>ჯუჯა წიწაკა</NavLink>
-                <NavLink to={'/catalogue/baziliki'}>ბაზილიკი</NavLink>
+                {categories?.map((each, index) => (
+                  <NavLink key={index} to={`/catalogue/${each.enCategory}`}>
+                    {i18n.language === 'en' ? capitalize(each.enCategory) : each.geoCategory}
+                  </NavLink>
+                ))}
               </div>
             </div>
           </li>
           <li>
-            <NavLink to={'/about'}>ჩვენ შესახებ</NavLink>
+            <NavLink to={'/about'}>{t("global.header.aboutus")}</NavLink>
           </li>
           <li>
-            <NavLink to={'/contact'}>კონტაქტი</NavLink>
+            <NavLink to={'/contact'}>{t("global.header.contact")}</NavLink>
           </li>
           <div className="language-icons-mob">
             <LanguageDropdown />

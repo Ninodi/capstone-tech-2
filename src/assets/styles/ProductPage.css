@@ -49,6 +49,14 @@ h2 {
   }
 }
 
+.full-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .prod-page {
   width: 100%;
   min-height: 100vh;
@@ -210,8 +218,10 @@ h2 {
 
 .detailed-descr {
   height: 100%;
+  width: 100%;
   overflow: hidden;
   transition: all 0.3s ease-in;
+  cursor: pointer;
 }
 .detailed-descr.toggled {
   height: 40px;
@@ -243,6 +253,11 @@ h2 {
   padding-left: 10px;
   margin-top: 16px;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
 }
 @media screen and (min-width: 769px) {
   .prod-descr {
@@ -274,4 +289,13 @@ h2 {
   font-size: 18px;
   font-weight: 700;
   margin-left: auto;
+}
+
+.parahraph-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  align-items: flex-start;
+  gap: 5px;
 }/*# sourceMappingURL=ProductPage.css.map */

@@ -49,6 +49,14 @@ h2 {
   }
 }
 
+.full-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
   width: 100%;
   background-color: #8BC34A;
@@ -472,6 +480,7 @@ nav li > a:hover::after, nav li p:hover::after {
 
 .product-box {
   min-width: 60%;
+  width: 100%;
   padding: 16px;
   border-radius: 20px;
   background-color: #F1F9E9;
@@ -489,6 +498,7 @@ nav li > a:hover::after, nav li p:hover::after {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   overflow: hidden;
+  margin-bottom: 5px;
 }
 @media screen and (min-width: 1025px) {
   .product-img {

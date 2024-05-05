@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import AdminHeader from './components/AdminHeader';
-import useAuthStore from './store';
+import useAuthStore from './store/authStore';
 import AdminSidebar from './components/AdminSidebar';
 
 const ProtectedRoutes = () => {

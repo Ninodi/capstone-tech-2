@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
@@ -8,9 +8,10 @@ import ProductPage from './pages/ProductPage';
 import { Suspense, useEffect } from 'react';
 import AdminLogin from './pages/AdminLogin';
 import AdminBestSellers from './pages/protected/AdminBestSellers';
-import useAuthStore from './store';
 import ProtectedRoutes from './ProtectedRoutes';
 import AdminProducts from './pages/protected/AdminProducts';
+import AdminLeads from './pages/protected/AdminLeads';
+import AdminProdDetails from './pages/protected/AdminProdDetails';
 
 function App() {
 
@@ -23,14 +24,15 @@ function App() {
                   <Route path='/contact' element={<ContactPage />} />
                   <Route path='/about' element={<AboutUsPage />} />
                   <Route path='/catalogue/:type' element={<CataloguePage />} />
-                  <Route path='/catalogue/:type/:product' element={<ProductPage />} />
+                  <Route path='/catalogue/:type/:productId' element={<ProductPage />} />
                   <Route element={<ProtectedRoutes />}>
                         <Route path='admin/*'>
-                            <Route path='bestSellers' element={<AdminBestSellers />} />
-                            <Route path='leads' element={<AdminBestSellers />} />
+                            <Route index element={<AdminBestSellers />} />
+                            <Route path=':bestSellers' element={<AdminBestSellers />} />
+                            <Route path='leads' element={<AdminLeads />} />
                             <Route path='products' element={<AdminProducts />} />
-                            <Route path='bestSellers/:bestSeller' element={<AdminBestSellers />} />
-                            <Route path='products/:product' element={<AdminBestSellers />} />
+                            <Route path=':products/:prodId' element={<AdminProdDetails  />} />
+                            <Route path=':bestSellers/:prodId' element={<AdminProdDetails  />} />
                         </Route>
                   </Route>
               </Routes>

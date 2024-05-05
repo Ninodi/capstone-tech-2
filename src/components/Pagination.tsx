@@ -16,11 +16,19 @@ function Pagination({totalPages, currPage, setCurrPage}: PaginationProps) {
                     <img src={Arrow} alt="" />
                 </div>
                 <div className="pagination-pages">
-                    {leftPag.map((each, index) => (
+                    {totalPages <= 5 ? (
+                        Array.from({ length: totalPages }, (_, index) => index + 1).map((each, index) => (
                         <div className={`${currPage === each ? 'active' : ''}`} onClick={() => setCurrPage(each)} key={index}>{each}</div>
-                    ))}
-                    <div>...</div>
-                    <div className={`${currPage === totalPages ? 'active' : ''}`} onClick={() => setCurrPage(totalPages)}>{totalPages}</div>
+                        ))
+                    ) : (
+                        <>
+                        {leftPag.map((each, index) => (
+                            <div className={`${currPage === each ? 'active' : ''}`} onClick={() => setCurrPage(each)} key={index}>{each}</div>
+                        ))}
+                        <div>...</div>
+                        <div className={`${currPage === totalPages ? 'active' : ''}`} onClick={() => setCurrPage(totalPages)}>{totalPages}</div>
+                        </>
+                    )}
                 </div>
                 <div className={`next ${currPage < totalPages ? 'active' : ''}`} onClick={() => setCurrPage(prevPage => Math.min(prevPage + 1, totalPages))}>
                     <img src={Arrow} alt="" />

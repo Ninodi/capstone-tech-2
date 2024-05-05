@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Breadcrumbs from '../components/Breadcrumbs'
 import Footer from '../components/Footer'
@@ -7,15 +7,19 @@ import '../assets/styles/ContactPage.css'
 import ContactLinks from '../components/ContactLinks'
 import ContactForm from '../components/ContactForm'
 import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function ContactPage() {
   const currLoc = useLocation()
+  const {t} = useTranslation()
+
+
 
   return (
-    <div className='contact-page-container'>
+    <div className='full-page-container'>
       <Header />
-      <Breadcrumbs secondaryUrl={currLoc.pathname} basePage={'კონტაქტი'}/>
-      <PageTitle pageTitle={'კონტაქტი'} link={'/'} />
+      <Breadcrumbs secondaryUrl={currLoc.pathname} basePage={t('global.header.contact')}/>
+      <PageTitle pageTitle={t('global.header.contact')} link={'/'} />
       <div className="content-container">
         <div className="contact-page">
           <div className="contact-content">

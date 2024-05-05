@@ -4,7 +4,7 @@ import Logout from '../assets/icons/logout.png'
 import Star from '../assets/icons/star.png'
 import Inventory from '../assets/icons/inventory.png'
 import Leads from '../assets/icons/leads.png'
-import useAuthStore from '../store'
+import useAuthStore from '../store/authStore'
 
 function AdminSidebar() {
     const {setIsAuthenticated} = useAuthStore()

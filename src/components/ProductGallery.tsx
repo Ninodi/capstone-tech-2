@@ -6,8 +6,8 @@ import Prod4 from '../assets/img/Prod4.png'
 import Prod5 from '../assets/img/Prod5.png'
 import Arrow from '../assets/icons/arrow.png'
 
-function ProductGallery() {
-  const prodImages = [Prod1, Prod2, Prod3, Prod4, Prod5, Prod1, Prod2, Prod3, Prod4, Prod5]
+function ProductGallery({prodImages} : {prodImages: string[]}) {
+  // const prodImages = [Prod1, Prod2, Prod3, Prod4, Prod5, Prod1, Prod2, Prod3, Prod4, Prod5]
   const [mainImgIndex, setMainImgIndex] = useState<number>(0)
   const prodImagesRef = useRef<HTMLDivElement>(null)
 
