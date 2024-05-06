@@ -47,30 +47,37 @@ function CataloguePage() {
   return (
     <div className='full-page-container'>
       <Header />
-      <Breadcrumbs secondaryUrl={currLoc.pathname} basePage={t("global.popularProds")}/>
+      <Breadcrumbs secondaryUrl={currLoc.pathname} basePage={t("global.header.catalogue")}/>
       <PageTitle link='/' pageTitle={t('global.ourPlants')} />
       <div className="content-container">
-        <div className="products-container">
-          {
-            displayedProds?.map((each, index) => (
-              <ProductBox 
-                key={each.id}
-                id={each.id}
-                enCategory={each.enCategory}
-                geoCategory={each.geoCategory}
-                geoName={each.geoName}
-                enName={each.enName}
-                geoDescr={each.geoDescr}
-                enDescr={each.enDescr}
-                price={each.price}
-                images={each.images}
-                isAvailable={each.isAvailable}              
-              />
-            ))
-          }
-        </div>
+        {displayedProds?.length === 0
+          ? <h1 className='no-prod-text'>{t('global.noProducts')}</h1>
+          :        
+          <div className="products-container">
+            {
+              displayedProds?.map((each, index) => (
+                <ProductBox 
+                  key={each.id}
+                  id={each.id}
+                  enCategory={each.enCategory}
+                  geoCategory={each.geoCategory}
+                  geoName={each.geoName}
+                  enName={each.enName}
+                  geoDescr={each.geoDescr}
+                  enDescr={each.enDescr}
+                  price={each.price}
+                  images={each.images}
+                  isAvailable={each.isAvailable}              
+                />
+              ))
+            }
+          </div>
+        }
       </div>
-      <Pagination totalPages={totalPages} setCurrPage={setCurrPage} currPage={currPage}/>
+      {displayedProds?.length === 0 
+        ? null
+        : <Pagination totalPages={totalPages} setCurrPage={setCurrPage} currPage={currPage}/>
+      }
       <Footer />
     </div>
   )

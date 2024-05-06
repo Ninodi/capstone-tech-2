@@ -4,6 +4,7 @@ import Logout from '../assets/icons/logout.png'
 import Star from '../assets/icons/star.png'
 import Inventory from '../assets/icons/inventory.png'
 import Leads from '../assets/icons/leads.png'
+import Category from '../assets/icons/category.png'
 import useAuthStore from '../store/authStore'
 
 function AdminSidebar() {
@@ -17,6 +18,10 @@ function AdminSidebar() {
   return (
     <div id='admin-sidebar'>
         <div className="admin-page-link">
+            <NavLink to={'/admin/categories'}>
+                <img src={Category} alt="" />
+                Categories
+            </NavLink>
             <NavLink to={'/admin/bestSellers'}>
                 <img src={Star} alt="" />
                 Best Sellers

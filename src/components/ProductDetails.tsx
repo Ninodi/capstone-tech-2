@@ -18,7 +18,7 @@ function ProductDetails({prodName, prodPrice, prodDescr, isAvailable} : {prodNam
     <div className='prod-details-container'>
         <h1>{prodName}</h1>
         <div className="availability-status" style={{color: `${isAvailable ? '#578C40' : '#C61915'}`}}>
-            {isAvailable ? `${i18n.language === 'en' ? 'Available' : 'ხელმისაწვდომია'}` : `${i18n.language === 'Unavailable' ? ' GEL' : 'დროებით არ არის  ხელმისაწვდომი'}`}
+            {isAvailable ? `${i18n.language === 'en' ? 'Available' : 'ხელმისაწვდომია'}` : `${i18n.language === 'en' ? 'Temporarily Unavailable': 'დროებით არ არის  ხელმისაწვდომი'}`}
         </div>
         <div className="prod-price">{prodPrice} {i18n.language === 'en' ? ' GEL' : ' ₾'}</div>
         <div className={`detailed-descr ${!toggleDescr ? 'toggled' : ''}`}>

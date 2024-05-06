@@ -11,6 +11,7 @@ function AdminProducts() {
   const [products, setProducts] = useState<IProduct[]>([])
   const {i18n} = useTranslation()
   const navigate = useNavigate()
+  
   useEffect(() => {
     getData({endpoint: 'products'})
     setProducts(data as IProduct[])
@@ -30,7 +31,7 @@ function AdminProducts() {
       </div>
       <div className="admin-list-container">
         {products?.map((each, index) => (
-          <ProdItem key={each.id} id={each.id} prodName={i18n.language === 'en' ? each.enName : each.geoName} endpoint={'products'}/>
+          <ProdItem key={each.id} id={each.id} prodName={i18n.language === 'en' ? each.enName : each.geoName} endpoint={'products'} isFavorite={each.isFavorite ?? false} prodInfo={each}/>
         ))}
       </div>
     </div>

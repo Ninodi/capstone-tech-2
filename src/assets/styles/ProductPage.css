@@ -64,6 +64,9 @@ h2 {
   flex-direction: column;
 }
 
+.product-title-cont {
+  width: 100%;
+}
 @media screen and (min-width: 769px) {
   .product-title-cont {
     display: none;

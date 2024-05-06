@@ -16,6 +16,13 @@ export interface IProduct {
     images: string[],
     price: string,
     isAvailable: boolean,
+    isFavorite?: boolean,
     id: string,
 }
   
+
+export interface ICategory {
+    enCategory: string;
+    geoCategory: string;
+    id: string;
+}

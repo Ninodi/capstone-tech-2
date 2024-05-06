@@ -27,6 +27,7 @@ function ProductPage() {
 
     useEffect(() => {
       setProdInfo(data as IProduct)
+      console.log(prodInfo)
     }, [data])
 
     const prodName = i18n.language === 'en' ? prodInfo?.enName : prodInfo?.geoName
@@ -41,7 +42,7 @@ function ProductPage() {
       <div className="content-container">
         <div className="prod-content-container">
           <ProductGallery prodImages={prodInfo?.images ?? []}/>
-          {productId && <ProductDetails prodName={prodName ?? ''} prodPrice={prodInfo?.price ?? ''} prodDescr={prodDescr ?? ''} isAvailable={prodInfo?.isAvailable || true}/>}
+          {productId && <ProductDetails prodName={prodName ?? ''} prodPrice={prodInfo?.price ?? ''} prodDescr={prodDescr ?? ''} isAvailable={prodInfo?.isAvailable || false}/>}
         </div>
       </div>
       <Footer />

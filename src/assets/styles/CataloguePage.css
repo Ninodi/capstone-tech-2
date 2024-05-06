@@ -87,6 +87,11 @@ h2 {
   display: block;
 }
 
+.no-prod-text {
+  text-align: center;
+  margin: auto;
+}
+
 .pagination-container {
   margin: 25px 0;
   position: relative;

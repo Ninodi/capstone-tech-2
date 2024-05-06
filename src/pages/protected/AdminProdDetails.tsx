@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom' 
 import { storage } from '../../config/firebase' 
 import { useTranslation } from 'react-i18next' 
-import { IProduct } from '../../interfaces' 
+import { ICategory, IProduct } from '../../interfaces' 
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage' 
 import ProdNameInput from '../../components/ProdNameInput' 
 import ProdDescrInput from '../../components/ProdDescrInput' 
@@ -11,24 +11,35 @@ import ProdImageInput from '../../components/ProdImageInput'
 import useFetch from '../../hooks/useFetch'
 import useRequest from '../../hooks/useRequest'
 import ProdAvailabilityInput from '../../components/ProdAvailabilityInput'
+import ProdCategoryInput from '../../components/ProdCategoryInput'
 
 function AdminProdDetails() {
   const {bestSellers, products, prodId } = useParams() 
   const [prodInfo, setProdInfo] = useState<IProduct | null>(null) 
+  const [categories, setCategories] = useState<ICategory[] | []>([])
+  
   const { i18n } = useTranslation()
-  const {getData, data} = useFetch()
+  const {getData, data: productsData} = useFetch()
+  const {getData: getCategories, data: categoriesData } = useFetch()
   const {requestData} = useRequest()
   const navigate = useNavigate()
   
   const endpointToUse = bestSellers ? bestSellers : products || ''
+
   useEffect(() => {
-    getData({endpoint: endpointToUse.toString(), id: prodId})
+    getData({ endpoint: endpointToUse.toString(), id: prodId })
+    getCategories({ endpoint: 'categories' })
   }, [])
 
   useEffect(() => {
-    setProdInfo(data as IProduct)
-    console.log(data)
-  }, [data])
+    if (productsData) {
+      setProdInfo(productsData as IProduct)
+    }
+    if (categoriesData) {
+      setCategories(categoriesData as ICategory[])
+    }
+  }, [productsData, categoriesData])
+
 
   const handleProdInfoChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, fieldToChange: string) => {
     if (prodInfo) {
@@ -57,11 +68,18 @@ function AdminProdDetails() {
     }
   }
 
+  const handleCategoryChange = (geoCategory: string, enCategory: string) => {
+    if (prodInfo) {
+      setProdInfo({ ...prodInfo, enCategory: enCategory, geoCategory: geoCategory })
+    }
+  }
+
   const handleToggleAvailability = () => {
     if (prodInfo) {
       setProdInfo({ ...prodInfo, isAvailable: !prodInfo.isAvailable })
     }
   }
+
   const onDeleteImage = (index: number) => {
     if (prodInfo) {
       const updatedImages = prodInfo.images.filter((_, i) => i !== index)
@@ -71,9 +89,9 @@ function AdminProdDetails() {
 
   const updateProdInfo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault() 
-    // await setDoc(docRef, prodInfo) 
+
     if (prodInfo && prodId) {
-      await requestData({ endpoint: endpointToUse.toString(), id: prodId, prodInfo })
+      await requestData({ endpoint: endpointToUse.toString(), id: prodId, data: prodInfo })
     }
 
     navigate(`/admin/${endpointToUse}`)
@@ -82,7 +100,7 @@ function AdminProdDetails() {
   return (
     <div className="admin-items-container">
       <h1>{i18n.language === 'en' ? prodInfo?.enName : prodInfo?.geoName}</h1>
-      <div className='admin-list-container inputs-container'>
+      <div className='admin-list-container'>
         <div className="short-fields">
           <ProdNameInput
             label="ქართული სახელი"
@@ -94,15 +112,11 @@ function AdminProdDetails() {
             value={prodInfo?.enName || ''}
             onChange={(e) => handleProdInfoChange(e, 'enName')}
           />
-          <ProdNameInput
-            label="ინგლისური კატეგორია"
-            value={prodInfo?.enCategory || ''}
-            onChange={(e) => handleProdInfoChange(e, 'enCategory')}
-          />
-          <ProdNameInput
-            label="ქართული კატეგორია"
-            value={prodInfo?.geoCategory || ''}
-            onChange={(e) => handleProdInfoChange(e, 'geoCategory')}
+          <ProdCategoryInput
+              label="კატეგორია"
+              value={prodInfo?.geoCategory || ''}
+              categories={categories}
+              onChange={(geoCategory, enCategory) => handleCategoryChange(geoCategory, enCategory)}
           />
           <ProdPriceInput
             label="პროდუქტის ფასი"

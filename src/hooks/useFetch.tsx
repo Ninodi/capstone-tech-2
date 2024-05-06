@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { collection, getDocs, doc, getDoc } from "firebase/firestore"
 import { db } from '../config/firebase'
-import { ILead, IProduct } from '../interfaces'
+import { ICategory, ILead, IProduct } from '../interfaces'
 
 function useFetch() {
-    const [data, setData] = useState<IProduct[] | IProduct | ILead[]>([])
+    const [data, setData] = useState<IProduct[] | IProduct | ILead[] | ICategory[]>([])
 
     const getData = async ({endpoint, id}: {endpoint: string, id?: string}) => {
         try {
@@ -15,7 +15,7 @@ function useFetch() {
                 console.log(docSnap.data())
                 setData(docSnap.data() as IProduct)
               } else {
-                console.error('Doc doesnt exist')
+                if(id === null) console.error('Doc doesnt exist')
               }
             } else {
               const dataSnapshot = await getDocs(collection(db, endpoint));
