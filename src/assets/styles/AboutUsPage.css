@@ -80,6 +80,7 @@ h2 {
     background-position: center;
     padding: 20px 0;
     flex-grow: 1;
+    margin-bottom: 10px;
   }
 }
 

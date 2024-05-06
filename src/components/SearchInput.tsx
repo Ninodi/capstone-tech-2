@@ -43,6 +43,7 @@ function SearchInput({toggleSearch, setToggleSearch} : ISearch) {
         }else setToggleSearch(prev => !prev)
 
     }
+    
 
     //toggle search visibility if search input is not an empty string
     useEffect(() => {
