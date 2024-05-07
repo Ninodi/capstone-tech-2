@@ -35,7 +35,7 @@ function ProductPage() {
   return (
     <div className='full-page-container'>
       <Header />
-      <Breadcrumbs secondaryUrl={'/catalogue/pepper'} basePage={t("global.popularProds")} product={prodName} prodUrl={prodLoc.pathname}/>
+      <Breadcrumbs secondaryUrl={'/catalogue/pepper'} basePage={t("global.header.catalogue")} product={prodName} prodUrl={prodLoc.pathname}/>
       <div className="product-title-cont">
         {productId && <PageTitle pageTitle={prodName ?? ''} link={`/catalogue/${prodInfo?.enCategory}`} />}
       </div>
