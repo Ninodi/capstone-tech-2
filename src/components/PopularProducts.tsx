@@ -3,6 +3,7 @@ import ProductBox from './ProductBox'
 import { IProduct } from '../interfaces'
 import { useTranslation } from 'react-i18next'
 import useFetch from '../hooks/useFetch'
+import PopularProductBox from './PopularProductBox'
 
 function PopularProducts() {
   const {t,} = useTranslation()
@@ -26,7 +27,7 @@ function PopularProducts() {
         <div className='content-container'>
           <div className="popular-items">
             {bestSellers?.map((each, index) => (
-              <ProductBox 
+              <PopularProductBox
                 key={each.id}
                 id={each.id}
                 enCategory={each.enCategory}

@@ -23,7 +23,7 @@ function ProductDetails({prodName, prodPrice, prodDescr, isAvailable} : {prodNam
         <div className="prod-price">{prodPrice} {i18n.language === 'en' ? ' GEL' : ' ₾'}</div>
         <div className={`detailed-descr ${!toggleDescr ? 'toggled' : ''}`}>
             <div className={`detailed-descr-btn ${!toggleDescr ? 'toggled' : ''}`}onClick={() => setToggleDescr(prev => !prev)}>
-                დეტალური არწერა
+                {i18n.language === 'en' ? 'Detailed desription' : 'დეტალური არწერა'}
                 <img src={Arrow} alt="" />
             </div>
             <div className="prod-descr">
@@ -36,7 +36,7 @@ function ProductDetails({prodName, prodPrice, prodDescr, isAvailable} : {prodNam
             </div>
         </div>
         <div className="contact-for-details">
-            <a href="/">შესაძენად დაგვიკავშირდით</a>
+            <a href="/">{i18n.language === 'en' ? 'Interested? Contact Us' : 'შესაძენად დაგვიკავშირდით'}</a>
         </div>
     </div>
   )

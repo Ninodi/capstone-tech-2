@@ -40,7 +40,6 @@ h2 {
   color: #484848;
   font-size: 14px;
   margin-bottom: 20px;
-  letter-spacing: 5px;
 }
 @media screen and (min-width: 1025px) {
   h2 {
@@ -68,29 +67,52 @@ h2 {
 .about-content {
   width: 100%;
 }
-@media screen and (min-width: 769px) {
-  .about-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../img/aboutus.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding: 20px 0;
-    flex-grow: 1;
-    margin-bottom: 10px;
+
+.about-item {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  min-height: 230px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 30px 26px 10px;
+  background-color: #F1F9E9;
+}
+.about-item:nth-child(2n) {
+  background-color: unset;
+  flex-direction: row-reverse;
+  padding-right: 10px;
+  padding-left: 30px;
+}
+@media screen and (min-width: 1025px) {
+  .about-item:nth-child(2n) {
+    text-align: right;
+  }
+}
+.about-item p {
+  color: #484848;
+  font-size: 18px;
+}
+@media screen and (min-width: 1025px) {
+  .about-item p {
+    font-size: 24px;
   }
 }
 
 .about-img {
-  width: 100%;
-  height: 165px;
+  min-width: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
 }
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1025px) {
   .about-img {
-    height: 100%;
+    min-width: 170px;
+    width: 170px;
+    height: 170px;
   }
 }
 .about-img img {
@@ -98,44 +120,4 @@ h2 {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-}
-@media screen and (min-width: 769px) {
-  .about-img img {
-    display: none;
-  }
-}
-
-.about-txt {
-  letter-spacing: 2px;
-  font-size: 14px;
-  padding-top: 10px;
-  padding-bottom: 26px;
-}
-@media screen and (min-width: 769px) {
-  .about-txt {
-    position: relative;
-    width: 80%;
-    font-size: 1em;
-    line-height: 32px;
-    font-weight: 700;
-    padding: 40px;
-    color: #fff;
-    z-index: 2;
-  }
-  .about-txt::after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 20px;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-}
-@media screen and (min-width: 1025px) {
-  .about-txt {
-    width: 60%;
-  }
 }/*# sourceMappingURL=AboutUsPage.css.map */

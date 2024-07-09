@@ -76,6 +76,9 @@ function Header() {
                 </div>
               </div>
               <div className={`catalogue-dropdown ${toggleDropdown ? 'active' : ''}`}>
+                <NavLink to={`/catalogue/all`}>
+                    {i18n.language === 'en' ? 'All' : 'ყველა'}
+                  </NavLink>
                 {categories?.map((each, index) => (
                   <NavLink key={index} to={`/catalogue/${each.enCategory}`}>
                     {i18n.language === 'en' ? capitalize(each.enCategory) : each.geoCategory}

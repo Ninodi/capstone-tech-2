@@ -10,6 +10,7 @@ function SomePlants() {
     const {getData, data} = useFetch()
     const [prods, setProds] = useState<IProduct[]>()
     const {t} = useTranslation()
+    const {i18n} = useTranslation()
 
     useEffect(() => {
         getData({endpoint: 'products'})
@@ -40,8 +41,8 @@ function SomePlants() {
                 ))}
             </div>
             <div className="see-more">
-            <NavLink to={'/catalogue/pepper'}>
-                <span>მეტის ნახვა</span>
+            <NavLink to={'/catalogue/all'}>
+                <span>{i18n.language === 'en' ? 'See more' : 'მეტის ნახვა'}</span>
                 <img src={Arrow} alt="" />
             </NavLink>
             </div>

@@ -33,7 +33,7 @@ function CataloguePage() {
   const prodPerPage = 16
   const startIndex = (currPage - 1) * prodPerPage
   const endIndex = startIndex + prodPerPage
-  const filteredProd = products?.filter(each => each.enCategory === type)
+  const filteredProd = type === 'all' ? products : products?.filter(each => each.enCategory === type)
   const displayedProds = filteredProd?.slice(startIndex, endIndex)
   const totalPages = Math.ceil((products?.length || 0) / prodPerPage)
 

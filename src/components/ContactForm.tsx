@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Arrow from '../assets/icons/arrow.png' 
 import { db } from '../config/firebase'
 import { collection, doc, setDoc } from "firebase/firestore";
+import { useTranslation } from 'react-i18next';
 
 interface FormErrors {
     comment: string | null
@@ -10,6 +11,8 @@ interface FormErrors {
 }
 
 const ContactForm = () => {
+    const {i18n} = useTranslation()
+
     const [comment, setComment] = useState('') 
     const [phone, setPhone] = useState('') 
     const [email, setEmail] = useState('') 
@@ -25,7 +28,7 @@ const ContactForm = () => {
 
     const validateComment = () => {
         if (comment === '') {
-            setErrors((prevState) => ({...prevState, comment: 'გთხოვთ დატოვოთ კომენტარი' })) 
+            setErrors((prevState) => ({...prevState, comment: `${i18n.language === 'en' ? 'Please leave the comment' : 'გთხოვთ დატოვოთ კომენტარი'}` })) 
         } else {
             setErrors((prevState) => ({...prevState, comment: ''})) 
         }
@@ -33,9 +36,9 @@ const ContactForm = () => {
 
     const validatePhone = () => {
         if (phone.trim() === '') {
-            setErrors((prevState) => ({...prevState, phone: 'გთხოვთ დატოვოთ ნომერი' })) 
+            setErrors((prevState) => ({...prevState, phone: `${i18n.language === 'en' ? 'Please leave the phone number' : 'გთხოვთ დატოვოთ ტელეფონი'}`})) 
         } else if (!/^\d{9}$/.test(phone.trim())) {
-            setErrors((prevState) => ({...prevState, phone: 'ნომერი უნდა იყოს 9 ციფრიანი' })) 
+            setErrors((prevState) => ({...prevState, phone: `${i18n.language === 'en' ? 'Number must contain 9 digits' : 'ნომერი უნდა იყოს 9 ციფრიანი'}` })) 
         } else {
             setErrors((prevState) => ({...prevState, phone: ''})) 
         }
@@ -43,9 +46,9 @@ const ContactForm = () => {
 
     const validateEmail = () => {
         if (email.trim() === '') {
-            setErrors((prevState) => ({...prevState, email: 'გთხოვთ დატოვოთ მეილი' })) 
+            setErrors((prevState) => ({...prevState, email: `${i18n.language === 'en' ? 'Please leave the email' : 'გთხოვთ დატოვოთ მეილი'}` })) 
         } else if (!/^\S+@\S+\.\S+$/.test(email.trim())) {
-            setErrors((prevState) => ({...prevState, email: 'გთხოვთ შეიყვანოთ სწორი ფორმატი' })) 
+            setErrors((prevState) => ({...prevState, email: `${i18n.language === 'en' ? 'Please use the right format' : 'გთხოვთ შეიყვანოთ სწორი ფორმატით'}`})) 
         } else {
             setErrors((prevState) => ({...prevState, email: ''})) 
         }
@@ -119,7 +122,7 @@ const ContactForm = () => {
                 <div className="input-field-container comment-container">
                     <textarea
                         id='comment'
-                        placeholder='Enter your comment here...'
+                        placeholder={i18n.language === 'en' ? 'Enter your message here...' : 'გთხოვთ თქვენი კომენტარი აქ დატოვოთ...'}
                         ref={commRef}
                         value={comment}
                         onChange={(e) => {
@@ -133,7 +136,7 @@ const ContactForm = () => {
                         <input
                             type="text"
                             id='phone'
-                            placeholder='Phone: '
+                            placeholder={i18n.language === 'en' ? 'Phone: ' : 'მობილური: '}
                             ref={phoneRef}
                             value={phone}
                             onChange={(e) => {
@@ -146,7 +149,7 @@ const ContactForm = () => {
                         <input
                             type="email"
                             id='email'
-                            placeholder='Email: '
+                            placeholder={i18n.language === 'en' ? 'Email:' : 'იმეილი:'}
                             ref={emailRef}
                             value={email}
                             onChange={(e) => {

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 function ProductBox({id, geoName, enName, enDescr, geoDescr, images, price, enCategory, geoCategory, isAvailable } : IProduct) {
   const {i18n} = useTranslation()
-  // const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
+
   return (
     <NavLink to={`/catalogue/pepper/${id}`} className='product-box'>
         <div className="product-img">

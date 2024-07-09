@@ -5,8 +5,10 @@ import Whatsapp from '../assets/icons/whatssapp.png'
 import Phone from '../assets/icons/phone.png'
 import Email from '../assets/icons/email.png'
 import Location from '../assets/icons/location.png'
+import { useTranslation } from 'react-i18next'
 
 function Footer() {
+    const {i18n} = useTranslation()
   return (
     <footer>
         <div className="footer-container content-container">
@@ -27,17 +29,17 @@ function Footer() {
                     <div className="icon-container">
                         <img src={Location} alt="" />
                     </div>
-                    <p>ანტონ ცოფურაშვილის ქ. 1, ნორიო</p>
+                    <p>{i18n.language === 'en' ? 'Anton tsopurashvili N1, Norio' : 'ანტონ წოფურაშვილის ქ. 1, ნორიო'}</p>
                 </div>
             </div>
             <div className="footer-right">
-                <a href="/#" className="soc-img">
+                <a href="https://www.facebook.com/profile.php?id=100093285667212" className="soc-img">
                     <img src={FB} alt="" />
                 </a>
-                <a href="/#" className="soc-img">
+                <a href="https://www.instagram.com/tsitsako" className="soc-img">
                     <img src={IG} alt="" />
                 </a>
-                <a href="/#" className="soc-img">
+                <a href="https://www.tiktok.com/@tsitsako" className="soc-img">
                     <img src={Whatsapp} alt="" />
                 </a>
             </div>

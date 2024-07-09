@@ -14,7 +14,6 @@ function ContactPage() {
   const {t} = useTranslation()
 
 
-
   return (
     <div className='full-page-container'>
       <Header />
@@ -29,7 +28,7 @@ function ContactPage() {
           <div className="maps">
             <iframe
               title="Google Maps"
-              src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1770.910670106209!2d44.780323422369875!3d41.7139397925798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z4YOQ4YOc4YOi4YOd4YOcIOGDrOGDneGDpOGDo-GDoOGDkOGDqOGDleGDmOGDmuGDmOGDoSDhg6Xhg6Phg6nhg5A!5e0!3m2!1sen!2sge!4v1714429417161!5m2!1sen!2sge"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d185.95184493168222!2d44.98616102987045!3d41.78026697747418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404414fb9439fb9f%3A0xe489aa41d13930e1!2sNorio!5e0!3m2!1sen!2sge!4v1720538266663!5m2!1sen!2sge"
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

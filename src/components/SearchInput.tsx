@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import SearchIcon from '../assets/icons/search.png'
 import useFetch from '../hooks/useFetch';
 import { IProduct } from '../interfaces';
@@ -24,26 +24,41 @@ function SearchInput({toggleSearch, setToggleSearch} : ISearch) {
     }, [data])
 
 
-    const searchForPord = () => {
-        if(toggleSearch){
+    const searchForPord = useCallback(() => {
+        if (toggleSearch) {
             const valueToSearch = searchInput.current?.value?.toLowerCase()
-            if(!valueToSearch) return
+            if (!valueToSearch) return
 
             const matchingProducts = products?.filter(product =>
-                product.geoName.toLowerCase().includes(valueToSearch) || 
+                product.geoName.toLowerCase().includes(valueToSearch) ||
                 (product.enName && product.enName.toLowerCase().includes(valueToSearch))
-            )
+            );
             const firstMatchingProduct = matchingProducts?.[0]
 
-            if(firstMatchingProduct){
+            if (firstMatchingProduct) {
                 navigate(`/catalogue/${firstMatchingProduct?.enCategory}/${firstMatchingProduct?.id}`)
-            }else{
+            } else {
                 navigate(`/404`)
             }
-        }else setToggleSearch(prev => !prev)
-
-    }
+        } else {
+            setToggleSearch(prev => !prev)
+        }
+    }, [toggleSearch, products, navigate])
     
+        // Handle 'Enter' key press
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key === 'Enter') {
+                searchForPord()
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyPress)
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress)
+        }
+    }, [searchForPord])
 
     //toggle search visibility if search input is not an empty string
     useEffect(() => {
@@ -64,6 +79,8 @@ function SearchInput({toggleSearch, setToggleSearch} : ISearch) {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [toggleSearch, setToggleSearch])
+
+
 
   return (
     <div className="search-field" ref={searchRef}>
