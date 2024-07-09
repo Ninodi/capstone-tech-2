@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Arrow from '../assets/icons/arrow.png'
 import { useTranslation } from 'react-i18next'
 import Light from '../assets/icons/light.png'
+import { NavLink } from 'react-router-dom'
 
 
 function ProductDetails({prodName, prodPrice, prodDescr, isAvailable} : {prodName: string, prodPrice: string, prodDescr: string, isAvailable: boolean}) {
@@ -36,7 +37,7 @@ function ProductDetails({prodName, prodPrice, prodDescr, isAvailable} : {prodNam
             </div>
         </div>
         <div className="contact-for-details">
-            <a href="/">{i18n.language === 'en' ? 'Interested? Contact Us' : 'შესაძენად დაგვიკავშირდით'}</a>
+            <NavLink to={'/contact'}>{i18n.language === 'en' ? 'Interested? Contact Us' : 'შესაძენად დაგვიკავშირდით'}</NavLink>
         </div>
     </div>
   )
